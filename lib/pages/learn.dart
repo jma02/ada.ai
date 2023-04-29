@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/xpbar.dart';
+
 class LearnPage extends StatelessWidget {
   final int exp;
   final Function() incrementExp;
@@ -13,15 +15,9 @@ class LearnPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        const Text(
-          'You have pushed the button this many times:',
-        ),
-        Text(
-          '$exp',
-          style: Theme.of(context).textTheme.headlineMedium,
-        ),
+        XpBar(exp: exp),
         FloatingActionButton(
           onPressed: incrementExp,
           tooltip: 'Increment',
