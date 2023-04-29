@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../widgets/xpbar.dart';
 
+import 'package:flutter_svg/svg.dart';
+
 class LearnPage extends StatelessWidget {
   final int exp;
   final Function() incrementExp;
@@ -18,6 +20,10 @@ class LearnPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         XpBar(exp: exp),
+        Image.asset(
+          'images/corgi.png',
+          scale: 5,
+        ),
         FloatingActionButton(
           onPressed: incrementExp,
           tooltip: 'Increment',
