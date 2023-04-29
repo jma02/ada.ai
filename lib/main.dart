@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pages/learn.dart';
 import 'pages/share.dart';
-import 'widgets/login.dart';
 
 void main() {
   runApp(const AdaApp());
@@ -43,7 +42,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _exp = 0;
   int _selectedIndex = 0;
-  String _apiKey = "";
 
   void _incrementExp() {
     setState(() {
@@ -57,30 +55,13 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _setApiKey(String apiKey) {
-    setState(() {
-      _apiKey = apiKey;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    // your function to execute on startup goes here
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) =>
-            LoginWidget(apiKey: _apiKey, setApiKey: _setApiKey),
-      );
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 117, 166, 216),
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(232, 207, 222, 52),
         title: Text(widget.title),
       ),
       body: Center(
@@ -91,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               : SharePage(exp: _exp, incrementExp: _incrementExp)),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: const Color.fromARGB(255, 218, 225, 233),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.school),

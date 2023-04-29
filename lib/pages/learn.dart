@@ -1,3 +1,4 @@
+import 'package:ada_ai/widgets/prompt.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/xpbar.dart';
@@ -18,6 +19,11 @@ class LearnPage extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         XpBar(exp: exp),
+        TextButton(
+            onPressed: () => showDialog(
+                context: context,
+                builder: (BuildContext context) => const PromptWidget()),
+            child: const Text("Test")),
         FloatingActionButton(
           onPressed: incrementExp,
           tooltip: 'Increment',
