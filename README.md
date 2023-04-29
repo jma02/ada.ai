@@ -1,4 +1,4 @@
-# ada_ai
+# ada.ai
 
 A HenHacks Project by ...
 - Jan Ahmed
