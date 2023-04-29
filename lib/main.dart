@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/learn.dart';
 import 'pages/share.dart';
+import 'widgets/login.dart';
 
 void main() {
   runApp(const AdaApp());
@@ -41,6 +42,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _exp = 0;
   int _selectedIndex = 0;
+  String _apiKey = "";
 
   void _incrementExp() {
     setState(() {
@@ -51,6 +53,25 @@ class _MyHomePageState extends State<MyHomePage> {
   void _setSelectedIndex(int index) {
     setState(() {
       _selectedIndex = index;
+    });
+  }
+
+  void _setApiKey(String apiKey) {
+    setState(() {
+      _apiKey = apiKey;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // your function to execute on startup goes here
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) =>
+            LoginWidget(apiKey: _apiKey, setApiKey: _setApiKey),
+      );
     });
   }
 
