@@ -18,7 +18,7 @@ class AdaApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
-        primarySwatch: Colors.lightBlue,
+        primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Ada.ai'),
     );
