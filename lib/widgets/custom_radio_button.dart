@@ -20,6 +20,7 @@ class CustomRadioButton extends StatelessWidget {
             onSubmitted(index);
           },
           style: OutlinedButton.styleFrom(
+              padding: const EdgeInsets.all(18.0),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
               side: BorderSide(
