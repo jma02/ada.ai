@@ -53,9 +53,17 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   int _selectedOption = -1;
   int _corgisPetted = 0;
 
-  int _answer = problems108[0].correctIndex;
   bool _isVisible = false;
   int _qNumber = 0;
+
+  late List<int> _indices;
+  late int _answer;
+  @override
+  void initState() {
+    super.initState();
+    _indices = List.generate(problems108.length, (i) => i)..shuffle();
+    _answer = problems108[_indices[0]].correctIndex;
+  }
 
   void _incrementCorgisPetted() {
     setState(() {
@@ -83,11 +91,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   }
 
   void _setAnswer() {
-    Future.delayed(const Duration(milliseconds: 100), () {
-      _answer = problems108[_qNumber].correctIndex;
-      print("Answer index: $_answer");
-      print("Question number: $_qNumber");
-    });
+    _answer = problems108[_indices[_qNumber]].correctIndex;
+    print("Answer index: $_answer");
+    print("Question number: $_qNumber");
   }
 
   void _setSelectedIndex(int index) {
@@ -171,6 +177,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                       answer: _answer,
                       isVisible: _isVisible,
                       qNumber: _qNumber,
+                      indices: _indices,
                     ),
                     const SizedBox(height: 20),
                     Row(
