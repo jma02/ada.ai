@@ -1,25 +1,18 @@
 import 'package:ada_ai/widgets/custom_radio_button.dart';
 import 'package:flutter/material.dart';
 
-class Quiz extends StatefulWidget {
+class Quiz extends StatelessWidget {
   const Quiz({
     super.key,
     required this.exp,
     required this.incrementExp,
+    required this.question,
+    required this.onSelectQ,
   });
   final int exp;
-  final Function(int x) incrementExp;
-  @override
-  State<Quiz> createState() => _QuizState();
-}
-
-class _QuizState extends State<Quiz> {
-  int value = 0;
-  void _onSubmitted(int index) async {
-    setState(() {
-      value = index;
-    });
-  }
+  final void Function(int x) incrementExp;
+  final void Function(int) onSelectQ;
+  final int question;
 
   @override
   Widget build(BuildContext context) {
@@ -40,26 +33,26 @@ class _QuizState extends State<Quiz> {
               text:
                   'A series of concrete instructions to be carried out by a computer',
               index: 1,
-              onSubmitted: _onSubmitted,
-              value: value),
+              onSelectQ: onSelectQ,
+              question: question),
           const SizedBox(height: 10),
           CustomRadioButton(
               text: 'A turing machine',
               index: 2,
-              onSubmitted: _onSubmitted,
-              value: value),
+              onSelectQ: onSelectQ,
+              question: question),
           const SizedBox(height: 10),
           CustomRadioButton(
               text: 'cream cheese',
               index: 3,
-              onSubmitted: _onSubmitted,
-              value: value),
+              onSelectQ: onSelectQ,
+              question: question),
           const SizedBox(height: 10),
           CustomRadioButton(
               text: 'mannin up',
               index: 4,
-              onSubmitted: _onSubmitted,
-              value: value),
+              onSelectQ: onSelectQ,
+              question: question),
         ]);
   }
 }

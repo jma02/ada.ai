@@ -1,3 +1,4 @@
+import 'package:ada_ai/widgets/prompt.dart';
 import 'package:flutter/material.dart';
 import 'pages/learn.dart';
 import 'pages/share.dart';
@@ -47,6 +48,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   int _exp = 0;
   int _selectedIndex = 0;
+  int _question = -1;
+  int _answer = 0;
 
   void _incrementExp(int x) {
     setState(() {
@@ -57,6 +60,18 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   void _setSelectedIndex(int index) {
     setState(() {
       _selectedIndex = index;
+    });
+  }
+
+  void _onSelectQ(int question) async {
+    setState(() {
+      _question = question;
+    });
+  }
+
+  void _setCorrectA(int answer) async {
+    setState(() {
+      _answer = answer;
     });
   }
 
@@ -101,11 +116,62 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         child: Center(
             child: _selectedIndex == 0
                 ? Column(children: <Widget>[
-                    const SizedBox(height: 75),
+                    const SizedBox(height: 50),
                     LearnPage(
                       exp: _exp,
                     ),
-                    Quiz(exp: _exp, incrementExp: (int x) => _incrementExp(x)),
+                    Quiz(
+                        exp: _exp,
+                        incrementExp: (int x) => _incrementExp(x),
+                        question: _question,
+                        onSelectQ: (int question) => _onSelectQ(question)),
+                    const SizedBox(height: 30),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.resolveWith<Color?>(
+                                  (Set<MaterialState> states) {
+                                    if (states
+                                        .contains(MaterialState.pressed)) {
+                                      return Theme.of(context)
+                                          .colorScheme
+                                          .primary
+                                          .withOpacity(0.5);
+                                    }
+                                    return null; // Use the component's default.
+                                  },
+                                ),
+                              ),
+                              onPressed: () => showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      const PromptWidget()),
+                              child: const Text("Ask Ada.ai!")),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.resolveWith<Color?>(
+                                  (Set<MaterialState> states) {
+                                    if (states
+                                        .contains(MaterialState.pressed)) {
+                                      return Theme.of(context)
+                                          .colorScheme
+                                          .primary
+                                          .withOpacity(0.5);
+                                    }
+                                    return null; // Use the component's default.
+                                  },
+                                ),
+                              ),
+                              onPressed: () => _setCorrectA(1),
+                              child: const Text("Submit")),
+                        ]),
                     Expanded(
                         child: Align(
                       alignment: Alignment.bottomCenter,
