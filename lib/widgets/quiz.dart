@@ -10,16 +10,19 @@ class Quiz extends StatefulWidget {
     required this.selectedOption,
     required this.onSelectOption,
     required this.answer,
-    required this.setCorrectA,
+    required this.isVisible,
+    required this.qNumber,
   });
   final int answer;
   final int exp;
-  final void Function(int x) setCorrectA;
   final void Function(int x) incrementExp;
   final void Function(int) onSelectOption;
   final int selectedOption;
+  final bool isVisible;
+  final int qNumber;
 
   @override
+  // ignore: library_private_types_in_public_api
   _QuizState createState() => _QuizState();
 }
 
@@ -31,8 +34,6 @@ class _QuizState extends State<Quiz> {
     super.initState();
     indices = List.generate(problems108.length, (i) => i)..shuffle();
   }
-
-  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +51,7 @@ class _QuizState extends State<Quiz> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Text(
-                problems108[indices[index]].problem,
+                problems108[indices[widget.qNumber]].problem,
                 textAlign: TextAlign.center,
                 maxLines: null,
               ),
@@ -58,13 +59,16 @@ class _QuizState extends State<Quiz> {
           ),
         ),
         const SizedBox(height: 30),
-        ...problems108[indices[index]].options.asMap().entries.map(
+        ...problems108[indices[widget.qNumber]].options.asMap().entries.map(
               (x) => Column(children: [
                 CustomRadioButton(
-                    text: x.value,
-                    selectedOption: widget.selectedOption,
-                    onSelectOption: widget.onSelectOption,
-                    option: x.key),
+                  text: x.value,
+                  selectedOption: widget.selectedOption,
+                  onSelectOption: widget.onSelectOption,
+                  option: x.key,
+                  isVisible: widget.isVisible,
+                  answer: widget.answer,
+                ),
                 const SizedBox(height: 10)
               ]),
             ),
