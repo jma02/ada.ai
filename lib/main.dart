@@ -1,3 +1,4 @@
+import 'package:ada_ai/problems/problems108.dart';
 import 'package:ada_ai/widgets/popup.dart';
 import 'package:ada_ai/widgets/prompt.dart';
 import 'package:flutter/material.dart';
@@ -49,13 +50,35 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   int _exp = 0;
   int _selectedIndex = 0;
-  int _question = -1;
-  int _answer = 0;
+  int _selectedOption = -1;
+  int _answer = problems108[0].correctIndex;
   bool _isVisible = false;
+  int _qNumber = 0;
+
+  void _setQNumber() {
+    Future.delayed(const Duration(milliseconds: 100), () {
+      setState(() {
+        _qNumber += 1;
+        _qNumber %= problems108.length;
+        _setAnswer();
+      });
+    });
+  }
 
   void _incrementExp(int x) {
+    if (x < 0 && _exp == 0) {
+      return;
+    }
     setState(() {
       _exp += x;
+    });
+  }
+
+  void _setAnswer() {
+    Future.delayed(const Duration(milliseconds: 100), () {
+      _answer = problems108[_qNumber].correctIndex;
+      print(_answer);
+      print(_qNumber);
     });
   }
 
@@ -65,20 +88,25 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     });
   }
 
-  void _onSelectQ(int question) async {
+  void _onSelectOption(int option) async {
     setState(() {
-      _question = question;
+      _selectedOption = option;
+      print(_selectedOption);
     });
   }
 
   void _setIsVisible() async {
+    if (_selectedOption == _answer) {
+      _incrementExp(1);
+    }
     setState(() {
       _isVisible = true;
     });
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 2), () {
       setState(() {
         _isVisible = false;
       });
+      _setQNumber();
     });
   }
 
@@ -130,11 +158,13 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                     Quiz(
                       exp: _exp,
                       incrementExp: (int x) => _incrementExp(x),
-                      question: _question,
-                      onSelectQ: (int question) => _onSelectQ(question),
+                      selectedOption: _selectedOption,
+                      onSelectOption: (int option) => _onSelectOption(option),
+                      answer: _answer,
                       isVisible: _isVisible,
+                      qNumber: _qNumber,
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 20),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[

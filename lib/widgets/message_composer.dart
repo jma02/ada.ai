@@ -40,7 +40,7 @@ class MessageComposer extends StatelessWidget {
                         ),
                         Padding(
                           padding: EdgeInsets.all(12),
-                          child: Text('Fetching ... 🐕 '),
+                          child: Text('Fetching 🐕 '),
                         ),
                       ],
                     ),
