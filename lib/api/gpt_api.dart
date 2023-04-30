@@ -1,14 +1,13 @@
+import 'package:ada_ai/env/env.dart';
+
 import '../classes/chat_message.dart';
 import 'package:dart_openai/openai.dart';
-import 'package:envied/envied.dart';
-part '../../.env';
 
-class ChatApi {
+class GPTApi {
   static const _model = 'gpt-3.5-turbo';
 
-  ChatApi() {
-    OpenAI.apiKey = ;
-    OpenAI.organization = openAiOrg;
+  GPTApi() {
+    OpenAI.apiKey = Env.OPENAI_API_TOKEN;
   }
 
   Future<String> completeChat(List<ChatMessage> messages) async {
@@ -16,7 +15,9 @@ class ChatApi {
       model: _model,
       messages: messages
           .map((e) => OpenAIChatCompletionChoiceMessageModel(
-                role: e.isUserMessage ? 'user' : 'assistant',
+                role: e.isUserMessage
+                    ? OpenAIChatMessageRole.user
+                    : OpenAIChatMessageRole.assistant,
                 content: e.content,
               ))
           .toList(),

@@ -3,8 +3,9 @@ import 'pages/learn.dart';
 import 'pages/share.dart';
 import 'widgets/xpbar.dart';
 import 'package:animated_background/animated_background.dart';
+import 'package:ada_ai/env/env.dart';
 
-void main() {
+void main() async {
   runApp(const AdaApp());
 }
 
