@@ -12,6 +12,7 @@ class Quiz extends StatefulWidget {
     required this.answer,
     required this.isVisible,
     required this.qNumber,
+    required this.indices,
   });
   final int answer;
   final int exp;
@@ -20,6 +21,7 @@ class Quiz extends StatefulWidget {
   final int selectedOption;
   final bool isVisible;
   final int qNumber;
+  final List<int> indices;
 
   @override
   // ignore: library_private_types_in_public_api
@@ -27,14 +29,6 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  late List<int> indices;
-
-  @override
-  void initState() {
-    super.initState();
-    indices = List.generate(problems108.length, (i) => i)..shuffle();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -51,7 +45,7 @@ class _QuizState extends State<Quiz> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               child: Text(
-                problems108[indices[widget.qNumber]].problem,
+                problems108[widget.indices[widget.qNumber]].problem,
                 textAlign: TextAlign.center,
                 maxLines: null,
               ),
@@ -59,7 +53,11 @@ class _QuizState extends State<Quiz> {
           ),
         ),
         const SizedBox(height: 30),
-        ...problems108[indices[widget.qNumber]].options.asMap().entries.map(
+        ...problems108[widget.indices[widget.qNumber]]
+            .options
+            .asMap()
+            .entries
+            .map(
               (x) => Column(children: [
                 CustomRadioButton(
                   text: x.value,

@@ -17,7 +17,7 @@ class _PromptWidgetState extends State<PromptWidget> {
   GPTApi gptApi = GPTApi();
   final _messages = <ChatMessage>[
     ChatMessage(
-        'Bark! I am Ada.ai, an intelligent Corgi with good intentions to tutor you in computer science!',
+        'Bark! I am Ada.ai, an intelligent Corgi who wants to tutor you in computer science!',
         false),
   ];
   var _awaitingResponse = false;

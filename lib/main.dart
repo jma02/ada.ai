@@ -51,9 +51,25 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   int _exp = 0;
   int _selectedIndex = 0;
   int _selectedOption = -1;
-  int _answer = problems108[0].correctIndex;
+  int _corgisPetted = 0;
+
   bool _isVisible = false;
   int _qNumber = 0;
+
+  late List<int> _indices;
+  late int _answer;
+  @override
+  void initState() {
+    super.initState();
+    _indices = List.generate(problems108.length, (i) => i)..shuffle();
+    _answer = problems108[_indices[0]].correctIndex;
+  }
+
+  void _incrementCorgisPetted() {
+    setState(() {
+      _corgisPetted++;
+    });
+  }
 
   void _setQNumber() {
     Future.delayed(const Duration(milliseconds: 100), () {
@@ -75,11 +91,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   }
 
   void _setAnswer() {
-    Future.delayed(const Duration(milliseconds: 100), () {
-      _answer = problems108[_qNumber].correctIndex;
-      print(_answer);
-      print(_qNumber);
-    });
+    _answer = problems108[_indices[_qNumber]].correctIndex;
+    print("Answer index: $_answer");
+    print("Question number: $_qNumber");
   }
 
   void _setSelectedIndex(int index) {
@@ -153,8 +167,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 ? Column(children: <Widget>[
                     const SizedBox(height: 50),
                     LearnPage(
-                      exp: _exp,
-                    ),
+                        exp: _exp,
+                        incrementCorgisPetted: _incrementCorgisPetted),
                     Quiz(
                       exp: _exp,
                       incrementExp: (int x) => _incrementExp(x),
@@ -163,6 +177,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                       answer: _answer,
                       isVisible: _isVisible,
                       qNumber: _qNumber,
+                      indices: _indices,
                     ),
                     const SizedBox(height: 20),
                     Row(
@@ -218,7 +233,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                     ))
                   ])
                 : Column(children: <Widget>[
-                    SharePage(exp: _exp),
+                    SharePage(
+                      exp: _exp,
+                      corgisPetted: _corgisPetted,
+                    ),
                     Expanded(
                         child: Align(
                       alignment: Alignment.bottomCenter,
