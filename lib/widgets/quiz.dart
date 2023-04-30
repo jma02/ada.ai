@@ -1,18 +1,38 @@
 import 'package:ada_ai/widgets/custom_radio_button.dart';
 import 'package:flutter/material.dart';
+import 'package:ada_ai/problems/problems108.dart';
 
-class Quiz extends StatelessWidget {
+class Quiz extends StatefulWidget {
   const Quiz({
     super.key,
     required this.exp,
     required this.incrementExp,
-    required this.question,
-    required this.onSelectQ,
+    required this.selectedOption,
+    required this.onSelectOption,
+    required this.answer,
+    required this.setCorrectA,
   });
+  final int answer;
   final int exp;
+  final void Function(int x) setCorrectA;
   final void Function(int x) incrementExp;
-  final void Function(int) onSelectQ;
-  final int question;
+  final void Function(int) onSelectOption;
+  final int selectedOption;
+
+  @override
+  _QuizState createState() => _QuizState();
+}
+
+class _QuizState extends State<Quiz> {
+  late List<int> indices;
+
+  @override
+  void initState() {
+    super.initState();
+    indices = List.generate(problems108.length, (i) => i)..shuffle();
+  }
+
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -26,33 +46,16 @@ class Quiz extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
               color: Colors.amber[50],
             ),
-            child: const Center(child: Text('What is a program?')),
+            child: Center(child: Text(problems108[indices[index]].problem)),
           ),
           const SizedBox(height: 30),
-          CustomRadioButton(
-              text:
-                  'A series of concrete instructions to be carried out by a computer',
-              index: 1,
-              onSelectQ: onSelectQ,
-              question: question),
-          const SizedBox(height: 10),
-          CustomRadioButton(
-              text: 'A turing machine',
-              index: 2,
-              onSelectQ: onSelectQ,
-              question: question),
-          const SizedBox(height: 10),
-          CustomRadioButton(
-              text: 'cream cheese',
-              index: 3,
-              onSelectQ: onSelectQ,
-              question: question),
-          const SizedBox(height: 10),
-          CustomRadioButton(
-              text: 'mannin up',
-              index: 4,
-              onSelectQ: onSelectQ,
-              question: question),
+          ...problems108[indices[index]].options.asMap().entries.map(
+                (x) => CustomRadioButton(
+                    text: x.value,
+                    selectedOption: widget.selectedOption,
+                    onSelectOption: widget.onSelectOption,
+                    option: x.key),
+              ),
         ]);
   }
 }
