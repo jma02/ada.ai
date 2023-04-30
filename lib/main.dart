@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'pages/learn.dart';
 import 'pages/share.dart';
 import 'widgets/xpbar.dart';
-import '../widgets/xpbar.dart';
+import 'package:animated_background/animated_background.dart';
 
 void main() {
   runApp(const AdaApp());
@@ -38,10 +38,10 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  _MyHomePageState createState() => new _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   int _exp = 0;
   int _selectedIndex = 0;
 
@@ -59,6 +59,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    ParticleOptions particleOptions = ParticleOptions(
+      image: Image.asset('images/corgi.png'),
+      spawnOpacity: 0.0,
+      opacityChangeRate: 0.25,
+      minOpacity: 0.1,
+      maxOpacity: 0.4,
+      spawnMinSpeed: 20.0,
+      spawnMaxSpeed: 50.0,
+      spawnMinRadius: 10.0,
+      spawnMaxRadius: 20.0,
+      particleCount: 20,
+    );
+
+    var particlePaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.0;
+
     // This method is rerun every time setState is called
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 117, 166, 216),
@@ -66,20 +83,27 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Color.fromARGB(238, 89, 172, 224),
         title: Text(widget.title),
       ),
-      body: Center(
-          child: _selectedIndex == 0
-              ? Column(children: <Widget>[
-                  LearnPage(
-                    exp: _exp,
-                    incrementExp: _incrementExp,
-                  ),
-                  Expanded(
-                      child: Align(
-                    alignment: Alignment.bottomCenter,
-                    child: XpBar(exp: _exp),
-                  ))
-                ])
-              : SharePage(exp: _exp, incrementExp: _incrementExp)),
+      body: AnimatedBackground(
+        behaviour: RandomParticleBehaviour(
+          options: particleOptions,
+          paint: particlePaint,
+        ),
+        vsync: this,
+        child: Center(
+            child: _selectedIndex == 0
+                ? Column(children: <Widget>[
+                    LearnPage(
+                      exp: _exp,
+                      incrementExp: _incrementExp,
+                    ),
+                    Expanded(
+                        child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: XpBar(exp: _exp),
+                    ))
+                  ])
+                : SharePage(exp: _exp, incrementExp: _incrementExp)),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: const Color.fromARGB(255, 218, 225, 233),
         items: const <BottomNavigationBarItem>[
