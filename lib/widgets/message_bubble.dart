@@ -32,6 +32,14 @@ class MessageBubble extends StatelessWidget {
                   isUserMessage ? 'You' : 'Ada.ai',
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
+                Spacer(),
+                if (!isUserMessage)
+                  Container(
+                    child: Image.asset(
+                      'images/corgi.png',
+                      scale: 24,
+                    ),
+                  ),
               ],
             ),
             const SizedBox(height: 8),

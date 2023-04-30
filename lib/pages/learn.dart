@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 
 class LearnPage extends StatelessWidget {
   final int exp;
+  final Function() incrementCorgisPetted;
 
   const LearnPage({
     super.key,
     required this.exp,
+    required this.incrementCorgisPetted,
   });
 
   @override
@@ -14,9 +16,12 @@ class LearnPage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
-        Image.asset(
-          'images/corgi.png',
-          scale: 5,
+        GestureDetector(
+          onTap: incrementCorgisPetted,
+          child: Image.asset(
+            'images/corgi.png',
+            scale: 5,
+          ),
         ),
       ],
     );
