@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/learn.dart';
 import 'pages/share.dart';
+import 'widgets/quiz.dart';
 import 'widgets/xpbar.dart';
 import 'package:animated_background/animated_background.dart';
 import 'package:ada_ai/env/env.dart';
@@ -47,9 +48,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   int _exp = 0;
   int _selectedIndex = 0;
 
-  void _incrementExp() {
+  void _incrementExp(int x) {
     setState(() {
-      _exp++;
+      _exp += x;
     });
   }
 
@@ -82,10 +83,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 117, 166, 216),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(236, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(236, 255, 255, 255),
         title: Text(
           widget.title,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.blue,
           ),
         ),
@@ -101,8 +102,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 ? Column(children: <Widget>[
                     LearnPage(
                       exp: _exp,
-                      incrementExp: _incrementExp,
                     ),
+                    Quiz(exp: _exp, incrementExp: (int x) => _incrementExp(x)),
                     Expanded(
                         child: Align(
                       alignment: Alignment.bottomCenter,
@@ -110,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                     ))
                   ])
                 : Column(children: <Widget>[
-                    SharePage(exp: _exp, incrementExp: _incrementExp),
+                    SharePage(exp: _exp),
                     Expanded(
                         child: Align(
                       alignment: Alignment.bottomCenter,
@@ -119,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                   ])),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
