@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'pages/learn.dart';
 import 'pages/share.dart';
+import 'widgets/xpbar.dart';
+import '../widgets/xpbar.dart';
 
 void main() {
   runApp(const AdaApp());
@@ -66,10 +68,17 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
           child: _selectedIndex == 0
-              ? LearnPage(
-                  exp: _exp,
-                  incrementExp: _incrementExp,
-                )
+              ? Column(children: <Widget>[
+                  LearnPage(
+                    exp: _exp,
+                    incrementExp: _incrementExp,
+                  ),
+                  Expanded(
+                      child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: XpBar(exp: _exp),
+                  ))
+                ])
               : SharePage(exp: _exp, incrementExp: _incrementExp)),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: const Color.fromARGB(255, 218, 225, 233),

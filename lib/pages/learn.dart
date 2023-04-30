@@ -1,10 +1,6 @@
 import 'package:ada_ai/widgets/prompt.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/xpbar.dart';
-
-import 'package:flutter_svg/svg.dart';
-
 class LearnPage extends StatelessWidget {
   final int exp;
   final Function() incrementExp;
@@ -47,7 +43,6 @@ class LearnPage extends StatelessWidget {
           tooltip: 'Increment',
           child: const Icon(Icons.add),
         ), // This trailing comma makes auto-formatting nicer for build methods.
-        XpBar(exp: exp),
       ],
     );
   }
