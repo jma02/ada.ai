@@ -1,4 +1,4 @@
-import 'package:ada_ai/widgets/customradiobutton.dart';
+import 'package:ada_ai/widgets/custom_radio_button.dart';
 import 'package:flutter/material.dart';
 
 class Quiz extends StatefulWidget {
@@ -28,29 +28,33 @@ class _QuizState extends State<Quiz> {
         children: <Widget>[
           Container(
             width: 350,
-            height: 200,
+            height: 150,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: Colors.amber[50],
             ),
             child: const Center(child: Text('What is a program?')),
           ),
+          const SizedBox(height: 30),
           CustomRadioButton(
               text:
                   'A series of concrete instructions to be carried out by a computer',
               index: 1,
               onSubmitted: _onSubmitted,
               value: value),
+          const SizedBox(height: 10),
           CustomRadioButton(
               text: 'A turing machine',
               index: 2,
               onSubmitted: _onSubmitted,
               value: value),
+          const SizedBox(height: 10),
           CustomRadioButton(
               text: 'cream cheese',
               index: 3,
               onSubmitted: _onSubmitted,
               value: value),
+          const SizedBox(height: 10),
           CustomRadioButton(
               text: 'mannin up',
               index: 4,

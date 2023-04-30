@@ -1,3 +1,4 @@
+import 'package:ada_ai/widgets/prompt.dart';
 import 'package:flutter/material.dart';
 import 'pages/learn.dart';
 import 'pages/share.dart';
@@ -82,6 +83,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     // This method is rerun every time setState is called
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 117, 166, 216),
+      /*
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(236, 255, 255, 255),
         title: Text(
@@ -90,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             color: Colors.blue,
           ),
         ),
-      ),
+      ),*/
       body: AnimatedBackground(
         behaviour: RandomParticleBehaviour(
           options: particleOptions,
@@ -104,6 +106,56 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                       exp: _exp,
                     ),
                     Quiz(exp: _exp, incrementExp: (int x) => _incrementExp(x)),
+                    const SizedBox(height: 50),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.resolveWith<Color?>(
+                                  (Set<MaterialState> states) {
+                                    if (states
+                                        .contains(MaterialState.pressed)) {
+                                      return Theme.of(context)
+                                          .colorScheme
+                                          .primary
+                                          .withOpacity(0.5);
+                                    }
+                                    return null; // Use the component's default.
+                                  },
+                                ),
+                              ),
+                              onPressed: () => showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      const PromptWidget()),
+                              child: const Text("Ask Ada.ai!")),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.resolveWith<Color?>(
+                                  (Set<MaterialState> states) {
+                                    if (states
+                                        .contains(MaterialState.pressed)) {
+                                      return Theme.of(context)
+                                          .colorScheme
+                                          .primary
+                                          .withOpacity(0.5);
+                                    }
+                                    return null; // Use the component's default.
+                                  },
+                                ),
+                              ),
+                              onPressed: () => showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      const PromptWidget()),
+                              child: const Text("Ask Ada.ai!")),
+                        ]),
                     Expanded(
                         child: Align(
                       alignment: Alignment.bottomCenter,
