@@ -6,6 +6,9 @@ A HenHacks Project by ...
 - Aaron Oster
 - Jonathan Ma (FORTRAN enjoyer)
 
+## Devpost
+[https://devpost.com/software/ada-ai](https://devpost.com/software/ada-ai)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
