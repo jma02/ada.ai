@@ -16,7 +16,9 @@ class _PromptWidgetState extends State<PromptWidget> {
   final TextEditingController _controller = TextEditingController();
   GPTApi gptApi = GPTApi();
   final _messages = <ChatMessage>[
-    ChatMessage('Hello, how can I help?', false),
+    ChatMessage(
+        'Bark! I am Ada.ai, an intelligent Corgi with good intentions to tutor you in computer science!',
+        false),
   ];
   var _awaitingResponse = false;
 
@@ -68,6 +70,7 @@ class _PromptWidgetState extends State<PromptWidget> {
           ),
           Flexible(
             child: Container(
+              height: 900,
               padding: const EdgeInsets.all(14.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -77,18 +80,20 @@ class _PromptWidgetState extends State<PromptWidget> {
                 ),
                 color: Color.fromARGB(255, 255, 255, 255),
               ),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    ..._messages.map(
-                      (msg) => MessageBubble(
-                        content: msg.content,
-                        isUserMessage: msg.isUserMessage,
+              child: Scrollbar(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      ..._messages.map(
+                        (msg) => MessageBubble(
+                          content: msg.content,
+                          isUserMessage: msg.isUserMessage,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

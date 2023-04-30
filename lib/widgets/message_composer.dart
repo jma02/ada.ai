@@ -26,7 +26,7 @@ class MessageComposer extends StatelessWidget {
                       controller: _messageController,
                       onSubmitted: onSubmitted,
                       decoration: const InputDecoration(
-                        hintText: 'What would you like to ask',
+                        hintText: 'What would you like to ask Ada.ai?',
                         border: InputBorder.none,
                       ),
                     )

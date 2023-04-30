@@ -15,11 +15,12 @@ class XpBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
         StepProgressIndicator(
+          padding: .5,
           totalSteps: 15,
           currentStep: exp,
           selectedColor: const Color.fromARGB(255, 37, 237, 121),
           unselectedColor: const Color.fromARGB(255, 130, 221, 239),
-          size: 20,
+          size: 10,
         ),
       ],
     );
