@@ -77,16 +77,19 @@ class _PromptWidgetState extends State<PromptWidget> {
                 ),
                 color: Color.fromARGB(255, 255, 255, 255),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  ..._messages.map(
-                    (msg) => MessageBubble(
-                      content: msg.content,
-                      isUserMessage: msg.isUserMessage,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    ..._messages.map(
+                      (msg) => MessageBubble(
+                        content: msg.content,
+                        isUserMessage: msg.isUserMessage,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

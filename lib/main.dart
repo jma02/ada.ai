@@ -82,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     // This method is rerun every time setState is called
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 117, 166, 216),
+      /*
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(236, 255, 255, 255),
         title: Text(
@@ -90,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             color: Colors.blue,
           ),
         ),
-      ),
+      ),*/
       body: AnimatedBackground(
         behaviour: RandomParticleBehaviour(
           options: particleOptions,
