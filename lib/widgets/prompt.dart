@@ -49,7 +49,7 @@ class _PromptWidgetState extends State<PromptWidget> {
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
               color: const Color.fromARGB(255, 103, 105, 153),
-              width: 1,
+              width: 2,
             ),
             color: Color.fromARGB(255, 255, 255, 255)),
         child: const Text(
@@ -66,7 +66,7 @@ class _PromptWidgetState extends State<PromptWidget> {
             'Ada.ai is powered by OpenAI\'s ChatGPT.',
             textScaleFactor: .75,
           ),
-          Expanded(
+          Flexible(
             child: Container(
               padding: const EdgeInsets.all(14.0),
               decoration: BoxDecoration(
