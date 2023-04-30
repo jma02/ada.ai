@@ -23,7 +23,7 @@ class CustomRadioButton extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
               side: BorderSide(
-                  color: (value == index) ? Colors.blue : Colors.black),
+                  color: (value == index) ? Colors.blue : Colors.amber),
               backgroundColor:
                   ((value == index) ? Colors.blue[200] : Colors.amber[50])),
           child: Text(

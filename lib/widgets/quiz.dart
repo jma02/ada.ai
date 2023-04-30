@@ -23,34 +23,39 @@ class _QuizState extends State<Quiz> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
-      Container(
-        width: 350,
-        height: 200,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.amber[50],
-        ),
-        child: const Center(child: Text('What is a program?')),
-      ),
-      CustomRadioButton(
-          text:
-              'A series of concrete instructions to be carried out by a computer',
-          index: 1,
-          onSubmitted: _onSubmitted,
-          value: value),
-      CustomRadioButton(
-          text: 'A turing machine',
-          index: 2,
-          onSubmitted: _onSubmitted,
-          value: value),
-      CustomRadioButton(
-          text: 'cream cheese',
-          index: 3,
-          onSubmitted: _onSubmitted,
-          value: value),
-      CustomRadioButton(
-          text: 'mannin up', index: 4, onSubmitted: _onSubmitted, value: value),
-    ]);
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Container(
+            width: 350,
+            height: 200,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.amber[50],
+            ),
+            child: const Center(child: Text('What is a program?')),
+          ),
+          CustomRadioButton(
+              text:
+                  'A series of concrete instructions to be carried out by a computer',
+              index: 1,
+              onSubmitted: _onSubmitted,
+              value: value),
+          CustomRadioButton(
+              text: 'A turing machine',
+              index: 2,
+              onSubmitted: _onSubmitted,
+              value: value),
+          CustomRadioButton(
+              text: 'cream cheese',
+              index: 3,
+              onSubmitted: _onSubmitted,
+              value: value),
+          CustomRadioButton(
+              text: 'mannin up',
+              index: 4,
+              onSubmitted: _onSubmitted,
+              value: value),
+        ]);
   }
 }
