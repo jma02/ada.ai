@@ -48,7 +48,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   int _exp = 0;
   int _selectedIndex = 0;
-  int _question = -1;
+  int _selectedOption = -1;
   int _answer = 0;
 
   void _incrementExp(int x) {
@@ -63,9 +63,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     });
   }
 
-  void _onSelectQ(int question) async {
+  void _onSelectOption(int option) async {
     setState(() {
-      _question = question;
+      _selectedOption = option;
     });
   }
 
@@ -121,10 +121,13 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                       exp: _exp,
                     ),
                     Quiz(
-                        exp: _exp,
-                        incrementExp: (int x) => _incrementExp(x),
-                        question: _question,
-                        onSelectQ: (int question) => _onSelectQ(question)),
+                      exp: _exp,
+                      incrementExp: (int x) => _incrementExp(x),
+                      selectedOption: _selectedOption,
+                      onSelectOption: (int option) => _onSelectOption(option),
+                      answer: _answer,
+                      setCorrectA: _setCorrectA,
+                    ),
                     const SizedBox(height: 30),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
