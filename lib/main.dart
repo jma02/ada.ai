@@ -52,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   int _selectedIndex = 0;
   int _selectedOption = -1;
   int _corgisPetted = 0;
+  int _answeredInCor = 0;
 
   bool _isVisible = false;
   int _qNumber = 0;
@@ -72,12 +73,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   }
 
   void _setQNumber() {
-    Future.delayed(const Duration(milliseconds: 100), () {
-      setState(() {
-        _qNumber += 1;
-        _qNumber %= problems108.length;
-        _setAnswer();
-      });
+    setState(() {
+      _qNumber += 1;
+      _qNumber %= problems108.length;
+      _setAnswer();
     });
   }
 
@@ -92,8 +91,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
 
   void _setAnswer() {
     _answer = problems108[_indices[_qNumber]].correctIndex;
-    print("Answer index: $_answer");
-    print("Question number: $_qNumber");
   }
 
   void _setSelectedIndex(int index) {
@@ -105,21 +102,23 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   void _onSelectOption(int option) async {
     setState(() {
       _selectedOption = option;
-      print(_selectedOption);
     });
   }
 
   void _setIsVisible() async {
     if (_selectedOption == _answer) {
       _incrementExp(1);
+    } else {
+      _answeredInCor += 1;
     }
     setState(() {
       _isVisible = true;
     });
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 1), () {
       setState(() {
         _isVisible = false;
       });
+      _selectedOption = -1;
       _setQNumber();
     });
   }
@@ -236,6 +235,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                     SharePage(
                       exp: _exp,
                       corgisPetted: _corgisPetted,
+                      answeredInCor: _answeredInCor,
                     ),
                     Expanded(
                         child: Align(
