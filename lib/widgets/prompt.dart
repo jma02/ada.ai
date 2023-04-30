@@ -33,21 +33,41 @@ class _PromptWidgetState extends State<PromptWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: const Color.fromARGB(173, 116, 177, 217),
-      title: const Text(
-        'You\'re now speaking with Ada.ai!',
-        textScaleFactor: .85,
-      ),
-      content: SizedBox(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: const <Widget>[
-            Text(
-              'ada.ai is powered by OpenAI\'s ChatGPT.',
-              textScaleFactor: .75,
+      backgroundColor: const Color.fromARGB(223, 88, 141, 222),
+      title: Container(
+        padding: const EdgeInsets.all(14.0),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: const Color.fromARGB(255, 103, 105, 153),
+              width: 1,
             ),
-          ],
+            color: const Color.fromARGB(255, 110, 157, 227)),
+        child: const Text(
+          'You\'re now speaking with Ada.ai!',
+          textScaleFactor: .85,
         ),
+      ),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: const <Widget>[
+          Text(
+            'Ada.ai is powered by OpenAI\'s ChatGPT.',
+            textScaleFactor: .75,
+          ),
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'What would you like to ask Ada.ai?',
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
       actions: <Widget>[
         TextButton(
