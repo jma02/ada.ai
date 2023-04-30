@@ -101,6 +101,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         child: Center(
             child: _selectedIndex == 0
                 ? Column(children: <Widget>[
+                    const SizedBox(height: 75),
                     LearnPage(
                       exp: _exp,
                     ),
