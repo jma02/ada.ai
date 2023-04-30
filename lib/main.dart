@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'pages/learn.dart';
 import 'pages/share.dart';
 import 'widgets/xpbar.dart';
-import '../widgets/xpbar.dart';
 
 void main() {
   runApp(const AdaApp());
