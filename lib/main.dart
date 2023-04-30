@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pages/learn.dart';
 import 'pages/share.dart';
+import 'widgets/quiz.dart';
 import 'widgets/xpbar.dart';
 import 'package:animated_background/animated_background.dart';
 
@@ -46,9 +47,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   int _exp = 0;
   int _selectedIndex = 0;
 
-  void _incrementExp() {
+  void _incrementExp(int x) {
     setState(() {
-      _exp++;
+      _exp += x;
     });
   }
 
@@ -95,8 +96,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 ? Column(children: <Widget>[
                     LearnPage(
                       exp: _exp,
-                      incrementExp: _incrementExp,
                     ),
+                    Quiz(exp: _exp, incrementExp: (int x) => _incrementExp(x)),
                     Expanded(
                         child: Align(
                       alignment: Alignment.bottomCenter,
@@ -104,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                     ))
                   ])
                 : Column(children: <Widget>[
-                    SharePage(exp: _exp, incrementExp: _incrementExp),
+                    SharePage(exp: _exp),
                     Expanded(
                         child: Align(
                       alignment: Alignment.bottomCenter,
