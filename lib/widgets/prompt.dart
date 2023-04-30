@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:envied/envied.dart';
+import 'package:ada_ai/api/gpt_api.dart';
+import 'package:ada_ai/classes/chat_message.dart';
+import 'package:ada_ai/widgets/message_bubble.dart';
+import 'package:ada_ai/widgets/message_composer.dart';
 
 class PromptWidget extends StatefulWidget {
   const PromptWidget({super.key});
@@ -9,7 +14,11 @@ class PromptWidget extends StatefulWidget {
 
 class _PromptWidgetState extends State<PromptWidget> {
   final TextEditingController _controller = TextEditingController();
-  String _prompt = "";
+  GPTApi gptApi = GPTApi();
+  final _messages = <ChatMessage>[
+    ChatMessage('Hello, how can I help?', false),
+  ];
+  var _awaitingResponse = false;
 
   @override
   void dispose() {
@@ -17,11 +26,23 @@ class _PromptWidgetState extends State<PromptWidget> {
     super.dispose();
   }
 
+  Future<void> _onSubmitted(String message) async {
+    setState(() {
+      _messages.add(ChatMessage(message, true));
+      _awaitingResponse = true;
+    });
+    final response = await gptApi.completeChat(_messages);
+    setState(() {
+      _messages.add(ChatMessage(response, false));
+      _awaitingResponse = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       // Dialog Box Props
-      backgroundColor: const Color.fromARGB(223, 88, 141, 222),
+      backgroundColor: Color.fromARGB(208, 255, 255, 255),
       title: Container(
         padding: const EdgeInsets.all(14.0),
         decoration: BoxDecoration(
@@ -30,9 +51,9 @@ class _PromptWidgetState extends State<PromptWidget> {
               color: const Color.fromARGB(255, 103, 105, 153),
               width: 1,
             ),
-            color: const Color.fromARGB(255, 110, 157, 227)),
+            color: Color.fromARGB(255, 255, 255, 255)),
         child: const Text(
-          'You are now speaking with Ada.ai!',
+          'You are now chatting with Ada.ai!',
           textScaleFactor: .80,
         ),
       ),
@@ -54,11 +75,18 @@ class _PromptWidgetState extends State<PromptWidget> {
                   color: const Color.fromARGB(255, 103, 105, 153),
                   width: 1,
                 ),
-                color: const Color.fromARGB(255, 110, 157, 227),
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: const <Widget>[Text("hello")],
+                children: <Widget>[
+                  ..._messages.map(
+                    (msg) => MessageBubble(
+                      content: msg.content,
+                      isUserMessage: msg.isUserMessage,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -71,19 +99,11 @@ class _PromptWidgetState extends State<PromptWidget> {
                   color: const Color.fromARGB(255, 103, 105, 153),
                   width: 1,
                 ),
-                color: Color.fromARGB(255, 142, 171, 207),
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
-              child: TextField(
-                controller: _controller,
-                onChanged: (text) {
-                  setState(() {
-                    _prompt = text;
-                  });
-                },
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'What would you like to ask Ada.ai?',
-                ),
+              child: MessageComposer(
+                onSubmitted: _onSubmitted,
+                awaitingResponse: _awaitingResponse,
               ),
             ),
           ),
