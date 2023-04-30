@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 
 class LearnPage extends StatelessWidget {
   final int exp;
-  final Function() incrementExp;
 
   const LearnPage({
     super.key,
     required this.exp,
-    required this.incrementExp,
   });
 
   @override
@@ -38,11 +36,6 @@ class LearnPage extends StatelessWidget {
           'images/corgi.png',
           scale: 5,
         ),
-        FloatingActionButton(
-          onPressed: incrementExp,
-          tooltip: 'Increment',
-          child: const Icon(Icons.add),
-        ), // This trailing comma makes auto-formatting nicer for build methods.
       ],
     );
   }
