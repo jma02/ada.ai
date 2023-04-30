@@ -17,8 +17,8 @@ class XpBar extends StatelessWidget {
         StepProgressIndicator(
           totalSteps: 15,
           currentStep: exp,
-          selectedColor: Color.fromARGB(255, 37, 237, 121),
-          unselectedColor: Color.fromARGB(255, 130, 221, 239),
+          selectedColor: const Color.fromARGB(255, 37, 237, 121),
+          unselectedColor: const Color.fromARGB(255, 130, 221, 239),
           size: 20,
         ),
       ],

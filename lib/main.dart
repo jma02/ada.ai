@@ -38,7 +38,8 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  // ignore: library_private_types_in_public_api
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
@@ -107,7 +108,14 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                       child: XpBar(exp: _exp),
                     ))
                   ])
-                : SharePage(exp: _exp, incrementExp: _incrementExp)),
+                : Column(children: <Widget>[
+                    SharePage(exp: _exp, incrementExp: _incrementExp),
+                    Expanded(
+                        child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: XpBar(exp: _exp),
+                    ))
+                  ])),
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
