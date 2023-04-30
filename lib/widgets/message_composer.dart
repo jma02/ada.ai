@@ -26,7 +26,7 @@ class MessageComposer extends StatelessWidget {
                       controller: _messageController,
                       onSubmitted: onSubmitted,
                       decoration: const InputDecoration(
-                        hintText: 'What would you like to ask Ada.ai?',
+                        hintText: 'What would you like to ask',
                         border: InputBorder.none,
                       ),
                     )
@@ -39,8 +39,8 @@ class MessageComposer extends StatelessWidget {
                           child: CircularProgressIndicator(),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Text('Fetching response...'),
+                          padding: EdgeInsets.all(12),
+                          child: Text('Fetching ... 🐕 '),
                         ),
                       ],
                     ),
