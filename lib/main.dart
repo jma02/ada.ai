@@ -80,8 +80,13 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 117, 166, 216),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(238, 89, 172, 224),
-        title: Text(widget.title),
+        backgroundColor: Color.fromARGB(236, 255, 255, 255),
+        title: Text(
+          widget.title,
+          style: TextStyle(
+            color: Colors.blue,
+          ),
+        ),
       ),
       body: AnimatedBackground(
         behaviour: RandomParticleBehaviour(
@@ -105,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 : SharePage(exp: _exp, incrementExp: _incrementExp)),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color.fromARGB(255, 218, 225, 233),
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.school),

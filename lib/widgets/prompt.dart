@@ -23,7 +23,7 @@ class _PromptWidgetState extends State<PromptWidget> {
   Widget build(BuildContext context) {
     return AlertDialog(
       // Dialog Box Props
-      backgroundColor: Color.fromARGB(223, 255, 255, 255),
+      backgroundColor: Color.fromARGB(208, 255, 255, 255),
       title: Container(
         padding: const EdgeInsets.all(14.0),
         decoration: BoxDecoration(
@@ -32,7 +32,7 @@ class _PromptWidgetState extends State<PromptWidget> {
               color: const Color.fromARGB(255, 103, 105, 153),
               width: 1,
             ),
-            color: const Color.fromARGB(255, 110, 157, 227)),
+            color: Color.fromARGB(255, 255, 255, 255)),
         child: const Text(
           'You are now speaking with Ada.ai!',
           textScaleFactor: .80,
@@ -56,7 +56,7 @@ class _PromptWidgetState extends State<PromptWidget> {
                   color: const Color.fromARGB(255, 103, 105, 153),
                   width: 1,
                 ),
-                color: const Color.fromARGB(255, 110, 157, 227),
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -73,7 +73,7 @@ class _PromptWidgetState extends State<PromptWidget> {
                   color: const Color.fromARGB(255, 103, 105, 153),
                   width: 1,
                 ),
-                color: Color.fromARGB(255, 142, 171, 207),
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
               child: TextField(
                 controller: _controller,
