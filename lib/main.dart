@@ -13,13 +13,13 @@ class AdaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ada.ai',
+      title: 'Ada.ai',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         primarySwatch: Colors.lightBlue,
       ),
-      home: const MyHomePage(title: 'ada.ai'),
+      home: const MyHomePage(title: 'Ada.ai'),
     );
   }
 }
@@ -59,7 +59,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 117, 166, 216),
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(238, 89, 172, 224),
         title: Text(widget.title),
       ),
       body: Center(
@@ -70,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               : SharePage(exp: _exp, incrementExp: _incrementExp)),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: const Color.fromARGB(255, 218, 225, 233),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.school),

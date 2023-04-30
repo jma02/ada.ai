@@ -14,18 +14,18 @@ class XpBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
-        StepProgressIndicator(
-          totalSteps: 10,
-          currentStep: exp,
-          selectedColor: Color.fromARGB(255, 252, 15, 185),
-          unselectedColor: Color.fromARGB(255, 130, 221, 239),
-          size: 20,
-        ),
         Text(
           '$exp',
           style: Theme.of(context).textTheme.headlineMedium,
+        ),
+        StepProgressIndicator(
+          totalSteps: 10,
+          currentStep: exp,
+          selectedColor: Color.fromARGB(255, 37, 237, 121),
+          unselectedColor: Color.fromARGB(255, 130, 221, 239),
+          size: 20,
         ),
       ],
     );
