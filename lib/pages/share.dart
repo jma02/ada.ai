@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class SharePage extends StatelessWidget {
   final int exp;
   final int corgisPetted;
+  final int answeredInCor;
 
   const SharePage({
     super.key,
     required this.exp,
     required this.corgisPetted,
+    required this.answeredInCor,
   });
 
   @override
@@ -51,7 +53,7 @@ class SharePage extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                          height: 100,
+                          height: 110,
                           width: 500,
                           padding: const EdgeInsets.all(20.0),
                           decoration: BoxDecoration(
@@ -59,21 +61,21 @@ class SharePage extends StatelessWidget {
                               color: const Color.fromARGB(255, 103, 105, 153),
                               width: 1,
                             ),
-                            color: Color.fromRGBO(255, 248, 225, 1),
+                            color: const Color.fromRGBO(255, 248, 225, 1),
                           ),
                           child: Column(children: [
-                            Text("Total Experience Points:"),
-                            SizedBox(height: 10.0),
+                            const Text("Total Experience Points:"),
+                            const SizedBox(height: 10.0),
                             Text(
-                              "${exp}",
-                              style: TextStyle(
+                              "$exp",
+                              style: const TextStyle(
                                 fontSize: 24.0,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                           ])),
                       Container(
-                        height: 100,
+                        height: 110,
                         width: 500,
                         padding: const EdgeInsets.all(20.0),
                         decoration: BoxDecoration(
@@ -84,11 +86,11 @@ class SharePage extends StatelessWidget {
                           color: Color.fromRGBO(255, 248, 225, 1),
                         ),
                         child: Column(children: [
-                          Text("Current Level:"),
-                          SizedBox(height: 10.0),
+                          const Text("Current Level:"),
+                          const SizedBox(height: 10.0),
                           Text(
-                            "${exp}",
-                            style: TextStyle(
+                            "${(exp ~/ 15) + 1}",
+                            style: const TextStyle(
                               fontSize: 24.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -96,7 +98,7 @@ class SharePage extends StatelessWidget {
                         ]),
                       ),
                       Container(
-                        height: 100,
+                        height: 110,
                         width: 500,
                         padding: const EdgeInsets.all(20.0),
                         decoration: BoxDecoration(
@@ -104,14 +106,14 @@ class SharePage extends StatelessWidget {
                             color: const Color.fromARGB(255, 103, 105, 153),
                             width: 1,
                           ),
-                          color: Color.fromRGBO(255, 248, 225, 1),
+                          color: const Color.fromRGBO(255, 248, 225, 1),
                         ),
                         child: Column(children: [
-                          Text("Problems Answered Correctly:"),
-                          SizedBox(height: 10.0),
+                          const Text("Problems Answered Correctly:"),
+                          const SizedBox(height: 10.0),
                           Text(
-                            "${exp}",
-                            style: TextStyle(
+                            "$exp",
+                            style: const TextStyle(
                               fontSize: 24.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -119,7 +121,7 @@ class SharePage extends StatelessWidget {
                         ]),
                       ),
                       Container(
-                        height: 100,
+                        height: 110,
                         width: 500,
                         padding: const EdgeInsets.all(20.0),
                         decoration: BoxDecoration(
@@ -127,14 +129,14 @@ class SharePage extends StatelessWidget {
                             color: const Color.fromARGB(255, 103, 105, 153),
                             width: 1,
                           ),
-                          color: Color.fromRGBO(255, 248, 225, 1),
+                          color: const Color.fromRGBO(255, 248, 225, 1),
                         ),
                         child: Column(children: [
-                          Text("Problems Answered Incorrectly:"),
-                          SizedBox(height: 10.0),
+                          const Text("Problems Answered Incorrectly:"),
+                          const SizedBox(height: 10.0),
                           Text(
-                            "${exp}",
-                            style: TextStyle(
+                            "$answeredInCor",
+                            style: const TextStyle(
                               fontSize: 24.0,
                               fontWeight: FontWeight.bold,
                             ),
@@ -142,7 +144,7 @@ class SharePage extends StatelessWidget {
                         ]),
                       ),
                       Container(
-                        height: 100,
+                        height: 110,
                         width: 500,
                         padding: const EdgeInsets.all(20.0),
                         decoration: BoxDecoration(
@@ -150,14 +152,14 @@ class SharePage extends StatelessWidget {
                             color: const Color.fromARGB(255, 103, 105, 153),
                             width: 1,
                           ),
-                          color: Color.fromRGBO(255, 248, 225, 1),
+                          color: const Color.fromRGBO(255, 248, 225, 1),
                         ),
                         child: Column(children: [
-                          Text("Corgis Petted:"),
-                          SizedBox(height: 10.0),
+                          const Text("Corgis Petted:"),
+                          const SizedBox(height: 10.0),
                           Text(
                             "$corgisPetted",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 24.0,
                               fontWeight: FontWeight.bold,
                             ),
