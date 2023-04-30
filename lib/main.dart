@@ -81,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 117, 166, 216),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(238, 89, 172, 224),
+        backgroundColor: const Color.fromARGB(238, 89, 172, 224),
         title: Text(widget.title),
       ),
       body: AnimatedBackground(
