@@ -46,9 +46,15 @@ class _QuizState extends State<Quiz> {
             borderRadius: BorderRadius.circular(20),
             color: Colors.amber[50],
           ),
-          child: FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Text(problems108[indices[index]].problem),
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Text(
+                problems108[indices[index]].problem,
+                textAlign: TextAlign.center,
+                maxLines: null,
+              ),
+            ),
           ),
         ),
         const SizedBox(height: 30),
