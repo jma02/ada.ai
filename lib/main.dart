@@ -114,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     setState(() {
       _isVisible = true;
     });
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 2), () {
       setState(() {
         _isVisible = false;
       });
@@ -222,7 +222,9 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                   },
                                 ),
                               ),
-                              onPressed: () => _setIsVisible(),
+                              onPressed: (_selectedOption == -1 || _isVisible)
+                                  ? null
+                                  : () => _setIsVisible(),
                               child: const Text("Submit")),
                         ]),
                     Expanded(
