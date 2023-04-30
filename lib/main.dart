@@ -1,3 +1,4 @@
+import 'package:ada_ai/widgets/popup.dart';
 import 'package:ada_ai/widgets/prompt.dart';
 import 'package:flutter/material.dart';
 import 'pages/learn.dart';
@@ -50,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   int _selectedIndex = 0;
   int _question = -1;
   int _answer = 0;
+  bool _isVisible = false;
 
   void _incrementExp(int x) {
     setState(() {
@@ -69,9 +71,14 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     });
   }
 
-  void _setCorrectA(int answer) async {
+  void _setIsVisible() async {
     setState(() {
-      _answer = answer;
+      _isVisible = true;
+    });
+    Future.delayed(const Duration(seconds: 5), () {
+      setState(() {
+        _isVisible = false;
+      });
     });
   }
 
@@ -121,10 +128,12 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                       exp: _exp,
                     ),
                     Quiz(
-                        exp: _exp,
-                        incrementExp: (int x) => _incrementExp(x),
-                        question: _question,
-                        onSelectQ: (int question) => _onSelectQ(question)),
+                      exp: _exp,
+                      incrementExp: (int x) => _incrementExp(x),
+                      question: _question,
+                      onSelectQ: (int question) => _onSelectQ(question),
+                      isVisible: _isVisible,
+                    ),
                     const SizedBox(height: 30),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -169,7 +178,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                   },
                                 ),
                               ),
-                              onPressed: () => _setCorrectA(1),
+                              onPressed: () => _setIsVisible(),
                               child: const Text("Submit")),
                         ]),
                     Expanded(
