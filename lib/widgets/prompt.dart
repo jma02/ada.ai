@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:envied/envied.dart';
 
 class PromptWidget extends StatefulWidget {
   const PromptWidget({super.key});
@@ -10,6 +11,7 @@ class PromptWidget extends StatefulWidget {
 class _PromptWidgetState extends State<PromptWidget> {
   final TextEditingController _controller = TextEditingController();
   String _prompt = "";
+  List<String> _dialog = [];
 
   @override
   void dispose() {
@@ -21,7 +23,7 @@ class _PromptWidgetState extends State<PromptWidget> {
   Widget build(BuildContext context) {
     return AlertDialog(
       // Dialog Box Props
-      backgroundColor: const Color.fromARGB(223, 88, 141, 222),
+      backgroundColor: Color.fromARGB(223, 255, 255, 255),
       title: Container(
         padding: const EdgeInsets.all(14.0),
         decoration: BoxDecoration(
