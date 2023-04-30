@@ -1,3 +1,5 @@
+import 'package:ada_ai/problems/problems108.dart';
+import 'package:ada_ai/widgets/popup.dart';
 import 'package:ada_ai/widgets/prompt.dart';
 import 'package:flutter/material.dart';
 import 'pages/learn.dart';
@@ -49,8 +51,11 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   int _exp = 0;
   int _selectedIndex = 0;
   int _selectedOption = -1;
-  int _answer = 0;
   int _corgisPetted = 0;
+
+  int _answer = problems108[0].correctIndex;
+  bool _isVisible = false;
+  int _qNumber = 0;
 
   void _incrementCorgisPetted() {
     setState(() {
@@ -58,9 +63,30 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     });
   }
 
+  void _setQNumber() {
+    Future.delayed(const Duration(milliseconds: 100), () {
+      setState(() {
+        _qNumber += 1;
+        _qNumber %= problems108.length;
+        _setAnswer();
+      });
+    });
+  }
+
   void _incrementExp(int x) {
+    if (x < 0 && _exp == 0) {
+      return;
+    }
     setState(() {
       _exp += x;
+    });
+  }
+
+  void _setAnswer() {
+    Future.delayed(const Duration(milliseconds: 100), () {
+      _answer = problems108[_qNumber].correctIndex;
+      print("Answer index: $_answer");
+      print("Question number: $_qNumber");
     });
   }
 
@@ -73,12 +99,22 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   void _onSelectOption(int option) async {
     setState(() {
       _selectedOption = option;
+      print(_selectedOption);
     });
   }
 
-  void _setCorrectA(int answer) async {
+  void _setIsVisible() async {
+    if (_selectedOption == _answer) {
+      _incrementExp(1);
+    }
     setState(() {
-      _answer = answer;
+      _isVisible = true;
+    });
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        _isVisible = false;
+      });
+      _setQNumber();
     });
   }
 
@@ -133,9 +169,10 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                       selectedOption: _selectedOption,
                       onSelectOption: (int option) => _onSelectOption(option),
                       answer: _answer,
-                      setCorrectA: _setCorrectA,
+                      isVisible: _isVisible,
+                      qNumber: _qNumber,
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 20),
                     Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -179,7 +216,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                                   },
                                 ),
                               ),
-                              onPressed: () => _setCorrectA(1),
+                              onPressed: () => _setIsVisible(),
                               child: const Text("Submit")),
                         ]),
                     Expanded(
